@@ -1,7 +1,6 @@
 FROM alpine:edge
 
-RUN apk add --update build-base cmake git
-RUN git clone http://llvm.org/git/llvm.git -b release_37 /home/llvm
+RUN apk add --update build-base cmake git python
+RUN git clone http://llvm.org/git/llvm.git -b release_38 /home/llvm
 WORKDIR /home/llvm/build
-RUN apk add python
 RUN cmake .. && make -j4
