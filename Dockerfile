@@ -9,4 +9,6 @@ RUN apk add libexecinfo-dev --update-cache \
       --repository http://dl-4.alpinelinux.org/alpine/edge/testing/
 RUN ./autogen.sh
 RUN apk add make linux-headers
+RUN make
+RUN apk add g++
 RUN make check
