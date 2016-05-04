@@ -1,7 +1,7 @@
 FROM alpine:edge
 
 RUN apk update && apk add git
-RUN git clone -b tk/musltest git://github.com/tkelman/libunwind.git /home/libunwind
+RUN git clone -b tk/musltest2 git://github.com/tkelman/libunwind.git /home/libunwind
 WORKDIR /home/libunwind
 RUN apk add autoconf automake libtool build-base linux-headers
 # linux-headers for asm/unistd.h, libexecinfo-dev for execinfo.h
