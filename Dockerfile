@@ -1,11 +1,9 @@
-FROM alpine:edge
+FROM alpine
 
 RUN apk update && apk add git
-RUN git clone -b tk/fixmusl2 git://github.com/tkelman/libunwind.git /home/libunwind
-WORKDIR /home/libunwind
-RUN apk add autoconf automake libtool build-base linux-headers
-# linux-headers for asm/unistd.h, libexecinfo-dev for execinfo.h
-RUN apk add libexecinfo-dev --update-cache \
-      --repository http://dl-4.alpinelinux.org/alpine/edge/testing/
-RUN ./autogen.sh
-RUN make check
+RUN git clone https://tkelman@github.com/JuliaLang/julia /tmp/julia
+WORKDIR /tmp/julia
+RUN apk add build-base m4 bash tar curl
+RUN make -j4 -C deps compile-gmp
+# buggy:
+#RUN make -C deps install-gmp
