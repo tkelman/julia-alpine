@@ -5,5 +5,5 @@ RUN cd /home && wget http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4
 WORKDIR /home/SuiteSparse
 RUN apk add --update make cmake g++ openblas \
       --repository http://dl-4.alpinelinux.org/alpine/edge/testing
-RUN make
+RUN make || echo failed but exiting to save the container here
 # CC=clang CXX=clang++
