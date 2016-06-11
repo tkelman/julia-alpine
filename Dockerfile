@@ -1,9 +1,13 @@
 FROM alpine:edge
 
-RUN cd /home && wget http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4.5.3.tar.gz && \
-      tar -xzf SuiteSparse-4.5.3.tar.gz
-WORKDIR /home/SuiteSparse
-RUN apk add --update make cmake g++ openblas \
-      --repository http://dl-4.alpinelinux.org/alpine/edge/testing
-RUN make || echo failed but exiting to save the container here
-# CC=clang CXX=clang++
+RUN apk add --update build-base git llvm clang llvm-dev clang-dev \
+      perl-dev flex zlib-dev indent
+RUN cpan -i 'Exporter::Lite' && \
+      cpan -i 'File::Which' && \
+      cpan -i 'Getopt::Tabular' && \
+      cpan -i 'Regexp::Common'
+#      cpan -i 'Term::ReadKey' # fails tests when installed non-interactively?
+#      cpan -i 'Sys::CPU' # does not build on alpine, sys/unistd.h
+RUN git clone https://github.com/csmith-project/creduce /tmp/creduce
+RUN mkdir /tmp/creduce/build && cd /tmp/creduce/build && ../configure && \
+      make -j4 && make install
