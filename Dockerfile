@@ -7,7 +7,7 @@ RUN apk add --update build-base git llvm-dev clang flex zlib-dev perl && \
     cpan -i 'Regexp::Common' && \
     git clone https://github.com/csmith-project/creduce /tmp/creduce && \
     mkdir /tmp/creduce/build && \
-    cd /tmp/creduce/build #&& \
+    cd /tmp/creduce/build && \
     ../configure && \
     make -j8 && \
     make install && \
