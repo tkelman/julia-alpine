@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk add --update build-base git llvm-dev clang flex zlib-dev perl && \
+RUN apk add --update build-base git llvm-dev clang-dev flex zlib-dev perl && \
     cpan -i 'Exporter::Lite' && \
     cpan -i 'File::Which' && \
     cpan -i 'Getopt::Tabular' && \
@@ -12,7 +12,7 @@ RUN apk add --update build-base git llvm-dev clang flex zlib-dev perl && \
     make -j8 && \
     make install && \
     rm -rf /tmp/creduce && \
-    apk del -r --purge build-base git llvm-dev clang flex zlib-dev
+    apk del -r --purge build-base git llvm-dev clang-dev flex zlib-dev
 
 # indent (optional)
 #    cpan -i 'Term::ReadKey' # fails tests when installed non-interactively?
