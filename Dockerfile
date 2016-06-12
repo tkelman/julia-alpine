@@ -1,9 +1,10 @@
-FROM alpine:edge
+FROM quay.io/tkelman/julia-alpine:creduce
 
-RUN cd /home && wget http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4.5.3.tar.gz && \
-      tar -xzf SuiteSparse-4.5.3.tar.gz
-WORKDIR /home/SuiteSparse
-RUN apk add --update make cmake g++ openblas \
-      --repository http://dl-4.alpinelinux.org/alpine/edge/testing
-RUN make || echo failed but exiting to save the container here
+RUN wget -O /tmp/SS.tgz http://faculty.cse.tamu.edu/davis/SuiteSparse/SuiteSparse-4.5.3.tar.gz && \
+    tar -C /tmp -xzf /tmp/SS.tgz && \
+    rm /tmp/SS.tgz && \
+    apk add --update make cmake g++ && \
+    make -C /tmp/SuiteSparse || echo failed but exiting to save the container here
+#openblas \
+#      --repository http://dl-4.alpinelinux.org/alpine/edge/testing && \
 # CC=clang CXX=clang++
