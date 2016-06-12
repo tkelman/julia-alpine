@@ -9,7 +9,7 @@ RUN apk add --update build-base git llvm-dev clang-dev flex zlib-dev perl && \
     mkdir /tmp/creduce/build && \
     cd /tmp/creduce/build && \
     ../configure && \
-    make -j8 && \
+    make -j4 && \
     make install && \
     rm -rf /tmp/creduce && \
     apk del -r --purge build-base git llvm-dev clang-dev flex zlib-dev
