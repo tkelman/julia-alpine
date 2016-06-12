@@ -11,7 +11,6 @@ RUN apk add --update build-base git llvm-dev clang-dev flex zlib-dev perl && \
     ../configure && \
     make -j4 && \
     make install && \
-    rm -rf /tmp/creduce && \
     apk del -r --purge build-base git llvm-dev clang-dev flex zlib-dev
 
 # indent (optional)
