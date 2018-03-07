@@ -11,4 +11,4 @@ RUN apk add --update git make tar patch g++ xz python cmake \
 RUN git clone -b tk/fix-alpine-build https://github.com/tkelman/julia /tmp/julia
 WORKDIR /tmp/julia
 RUN make -j4
-RUN make testall1
+#RUN make testall1
