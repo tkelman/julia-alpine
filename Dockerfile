@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.7
 
 # xz and python and cmake to build llvm
 # perl to build openblas (also needed in julia's own makefiles)
